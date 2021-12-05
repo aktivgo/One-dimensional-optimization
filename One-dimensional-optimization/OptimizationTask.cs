@@ -36,10 +36,15 @@ namespace One_dimensional_optimization
                     break;
                 case 2:
                 {
-                    _method = new HalfDivisionMethod();
+                    _method = new ScanningWithVariableStepMethod();
                 }
                     break;
                 case 3:
+                {
+                    _method = new HalfDivisionMethod();
+                }
+                    break;
+                case 4:
                 {
                     _method = new GoldenRatioMethod();
                 }

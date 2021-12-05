@@ -36,6 +36,11 @@ namespace One_dimensional_optimization
                             ProcessTask(3);
                         }
                             break;
+                        case 4:
+                        {
+                            ProcessTask(4);
+                        }
+                            break;
                         default:
                             throw new Exception("\nПопробуйте ещё раз\n");
                     }
@@ -50,8 +55,9 @@ namespace One_dimensional_optimization
         private static void PrintMenu()
         {
             Console.WriteLine("1. Метод сканирования");
-            Console.WriteLine("2. Метод половинного деления");
-            Console.WriteLine("3. Метод золотого сечения");
+            Console.WriteLine("2. Метод сканирования c переменным шагом");
+            Console.WriteLine("3. Метод половинного деления");
+            Console.WriteLine("4. Метод золотого сечения");
             Console.WriteLine("0. Выход");
         }
 

@@ -41,6 +41,7 @@
         <Compile Include="Methods\GoldenRatioMethod.cs" />
         <Compile Include="Methods\HalfDivisionMethod.cs" />
         <Compile Include="Methods\ScanningMethod.cs" />
+        <Compile Include="Methods\ScanningWithVariableStepMethod.cs" />
         <Compile Include="OptimizationTask.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="IOptimizationMethod.cs" />
