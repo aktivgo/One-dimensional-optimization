@@ -27,7 +27,7 @@ namespace One_dimensional_optimization
         {
             return x * Math.Pow(1 - Math.Pow(x, 2), (double)1 / 3);
         }
-        
+
         // -x(1-x^2)^(1/3)
         public static double TestInverseFunc2GetValue(double x)
         {

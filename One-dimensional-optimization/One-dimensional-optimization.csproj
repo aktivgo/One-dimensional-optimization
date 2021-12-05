@@ -38,6 +38,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Methods\GoldenRatioMethod.cs" />
         <Compile Include="Methods\HalfDivisionMethod.cs" />
         <Compile Include="Methods\ScanningMethod.cs" />
         <Compile Include="OptimizationTask.cs" />

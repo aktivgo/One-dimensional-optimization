@@ -39,34 +39,43 @@ namespace One_dimensional_optimization
                     _method = new HalfDivisionMethod();
                 }
                     break;
+                case 3:
+                {
+                    _method = new GoldenRatioMethod();
+                }
+                    break;
             }
         }
 
         public double GetFuncValue(double x)
         {
             double result = 0;
-            
+
             switch (_testFunc)
             {
                 case 1:
                 {
                     result = TestFunctions.TestFunc1GetValue(x);
-                } break;
-                
+                }
+                    break;
+
                 case -1:
                 {
                     result = TestFunctions.TestInverseFunc1GetValue(x);
-                } break;
-                
+                }
+                    break;
+
                 case 2:
                 {
                     result = TestFunctions.TestFunc2GetValue(x);
-                } break;
-                
+                }
+                    break;
+
                 case -2:
                 {
                     result = TestFunctions.TestInverseFunc2GetValue(x);
-                } break;
+                }
+                    break;
             }
 
             return result;
@@ -84,7 +93,7 @@ namespace One_dimensional_optimization
                 throw new ArgumentException("Некорректное значение цели");
             }
         }
-        
+
         private void validateBorder(double start, double end)
         {
             if (start < 0 || end <= start)

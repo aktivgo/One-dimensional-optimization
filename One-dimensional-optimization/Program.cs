@@ -14,7 +14,7 @@ namespace One_dimensional_optimization
                     PrintMenu();
                     Console.Write("Выберите пункт меню: ");
                     var ch = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-                    
+
                     if (ch != 0) PrintTestFunctions();
 
                     switch (ch)
@@ -23,18 +23,17 @@ namespace One_dimensional_optimization
                             return;
                         case 1:
                         {
-                            OptimizationTask task = CreateTask();
-                            task.SetMethod(1);
-
-                            PrintResult(task);
+                            ProcessTask(1);
                         }
                             break;
                         case 2:
                         {
-                            OptimizationTask task = CreateTask();
-                            task.SetMethod(2);
-
-                            PrintResult(task);
+                            ProcessTask(2);
+                        }
+                            break;
+                        case 3:
+                        {
+                            ProcessTask(3);
                         }
                             break;
                         default:
@@ -47,11 +46,12 @@ namespace One_dimensional_optimization
                 }
             }
         }
-        
+
         private static void PrintMenu()
         {
             Console.WriteLine("1. Метод сканирования");
             Console.WriteLine("2. Метод половинного деления");
+            Console.WriteLine("3. Метод золотого сечения");
             Console.WriteLine("0. Выход");
         }
 
@@ -62,11 +62,19 @@ namespace One_dimensional_optimization
             Console.WriteLine("2. " + TestFunctions.TestFunc2ToString());
         }
 
+        private static void ProcessTask(int ch)
+        {
+            OptimizationTask task = CreateTask();
+            task.SetMethod(ch);
+
+            PrintResult(task);
+        }
+
         private static OptimizationTask CreateTask()
         {
             Console.Write("\nВведите номер тестовой функции: ");
             int func = int.Parse(Console.ReadLine() ?? string.Empty);
-                            
+
             Console.Write("Введите цель(min/max): ");
             string purpose = Console.ReadLine() ?? string.Empty;
 
@@ -74,13 +82,13 @@ namespace One_dimensional_optimization
             {
                 func = -func;
             }
-                            
+
             Console.Write("Введите начало границы: ");
             double start = double.Parse(Console.ReadLine() ?? string.Empty);
-                            
+
             Console.Write("Введите конец границы: ");
             double end = double.Parse(Console.ReadLine() ?? string.Empty);
-                            
+
             Console.Write("Введите погрешность: ");
             double e = double.Parse(Console.ReadLine() ?? string.Empty);
 
@@ -90,7 +98,7 @@ namespace One_dimensional_optimization
         private static void PrintResult(OptimizationTask task)
         {
             double x = task.GetExtreme();
-            double f = Math.Round(task.GetFuncValue(x), 2);
+            double f = task.GetFuncValue(x);
             Console.WriteLine("\nX" + task.Purpose + " = " + x + " +- " + task.E + "\nF(x) = " + f + "\n");
         }
     }
