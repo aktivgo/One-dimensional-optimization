@@ -14,17 +14,27 @@ namespace One_dimensional_optimization
                     PrintMenu();
                     Console.Write("Выберите пункт меню: ");
                     var ch = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
+                    
+                    if (ch != 0) PrintTestFunctions();
+
                     switch (ch)
                     {
                         case 0:
                             return;
                         case 1:
                         {
-                            Console.Write("\nВведите название файла: ");
-                            string fileName = Console.ReadLine();
-                            CheckFileExist(fileName);
-                            
-                            PrintScanningMethod();
+                            OptimizationTask task = CreateTask();
+                            task.SetMethod(1);
+
+                            PrintResult(task);
+                        }
+                            break;
+                        case 2:
+                        {
+                            OptimizationTask task = CreateTask();
+                            task.SetMethod(2);
+
+                            PrintResult(task);
                         }
                             break;
                         default:
@@ -33,7 +43,7 @@ namespace One_dimensional_optimization
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine(e.Message + "\n");
                 }
             }
         }
@@ -41,30 +51,47 @@ namespace One_dimensional_optimization
         private static void PrintMenu()
         {
             Console.WriteLine("1. Метод сканирования");
+            Console.WriteLine("2. Метод половинного деления");
             Console.WriteLine("0. Выход");
         }
 
-        private static void CheckFileExist(string fileName)
+        private static void PrintTestFunctions()
         {
-            if (!File.Exists("data/" + fileName))
+            Console.WriteLine("\nТестовые функции: ");
+            Console.WriteLine("1. " + TestFunctions.TestFunc1ToString());
+            Console.WriteLine("2. " + TestFunctions.TestFunc2ToString());
+        }
+
+        private static OptimizationTask CreateTask()
+        {
+            Console.Write("\nВведите номер тестовой функции: ");
+            int func = int.Parse(Console.ReadLine() ?? string.Empty);
+                            
+            Console.Write("Введите цель(min/max): ");
+            string purpose = Console.ReadLine() ?? string.Empty;
+
+            if (purpose == "max")
             {
-                throw new Exception("\nФайла с названием \""  + fileName + "\" не существует\n");
+                func = -func;
             }
-        }
-        
-        private static string ReadFromFile(string fileName)
-        {
-            FileStream stream = new FileStream("data/" + fileName, FileMode.Open);
-            StreamReader reader = new StreamReader(stream);
-            string textFromFile = reader.ReadToEnd();
-            stream.Close();
+                            
+            Console.Write("Введите начало границы: ");
+            double start = double.Parse(Console.ReadLine() ?? string.Empty);
+                            
+            Console.Write("Введите конец границы: ");
+            double end = double.Parse(Console.ReadLine() ?? string.Empty);
+                            
+            Console.Write("Введите погрешность: ");
+            double e = double.Parse(Console.ReadLine() ?? string.Empty);
 
-            return textFromFile;
+            return new OptimizationTask(func, purpose, start, end, e);
         }
 
-        private static void PrintScanningMethod()
+        private static void PrintResult(OptimizationTask task)
         {
-            
+            double x = task.GetExtreme();
+            double f = Math.Round(task.GetFuncValue(x), 2);
+            Console.WriteLine("\nX" + task.Purpose + " = " + x + " +- " + task.E + "\nF(x) = " + f + "\n");
         }
     }
 }

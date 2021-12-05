@@ -1,16 +1,18 @@
-﻿using One_dimensional_optimization.Tools;
-
-namespace One_dimensional_optimization.Methods
+﻿namespace One_dimensional_optimization.Methods
 {
     public class ScanningMethod : IOptimizationMethod
     {
-        public Point FindExtremes(OptimizationTask task)
+        public double FindExtreme(OptimizationTask task)
         {
-            Point result = null;
-            
-            
+            for (double x = task.Start; x <= task.End; x += task.E)
+            {
+                if (task.GetFuncValue(x + task.E) > task.GetFuncValue(x))
+                {
+                    return x;
+                }
+            }
 
-            return result;
+            return 0;
         }
     }
 }

@@ -38,13 +38,13 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Methods\HalfDivisionMethod.cs" />
         <Compile Include="Methods\ScanningMethod.cs" />
         <Compile Include="OptimizationTask.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="IOptimizationMethod.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="Tools\Function.cs" />
-        <Compile Include="Tools\Point.cs" />
+        <Compile Include="TestFunctions.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
