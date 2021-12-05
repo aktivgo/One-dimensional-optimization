@@ -96,7 +96,7 @@ namespace One_dimensional_optimization
 
         private void validateBorder(double start, double end)
         {
-            if (start < 0 || end <= start)
+            if (end <= start)
             {
                 throw new ArgumentException("Некорректное значение границ");
             }

@@ -1,4 +1,6 @@
-﻿namespace One_dimensional_optimization.Methods
+﻿using System;
+
+namespace One_dimensional_optimization.Methods
 {
     public class HalfDivisionMethod : IOptimizationMethod
     {
@@ -11,18 +13,18 @@
             double start = task.Start;
             double end = task.End;
 
-            while (start - end / 2 > task.E)
+            while (Math.Abs(start - end) / 2 > task.E)
             {
                 if (task.GetFuncValue(left) < task.GetFuncValue(right))
                 {
-                    start = right;
+                    end = right;
                 }
                 else
                 {
-                    end = left;
+                    start = left;
                 }
 
-                middle = (task.Start + task.End) / 2;
+                middle = (start + end) / 2;
                 left = middle - task.E / 2;
                 right = middle + task.E / 2;
             }
