@@ -7,7 +7,7 @@ namespace One_dimensional_optimization
     {
         public static void Main()
         {
-            while (true)
+            /*while (true)
             {
                 try
                 {
@@ -49,6 +49,13 @@ namespace One_dimensional_optimization
                 {
                     Console.WriteLine(e.Message + "\n");
                 }
+            }*/
+
+            PrintTestFunctions();
+            OptimizationTask task = CreateTask();
+            for (int i = 1; i <= 4; i++)
+            {
+                ProcessTask(task, i);
             }
         }
 
@@ -68,10 +75,33 @@ namespace One_dimensional_optimization
             Console.WriteLine("2. " + TestFunctions.TestFunc2ToString());
         }
 
-        private static void ProcessTask(int ch)
+        private static void ProcessTask(OptimizationTask task, int ch)
         {
-            OptimizationTask task = CreateTask();
             task.SetMethod(ch);
+
+            switch (ch)
+            {
+                case 1:
+                {
+                    Console.WriteLine("\n1. Метод сканирования");
+                }
+                    break;
+                case 2:
+                {
+                    Console.WriteLine("2. Метод сканирования c переменным шагом");
+                }
+                    break;
+                case 3:
+                {
+                    Console.WriteLine("3. Метод половинного деления");
+                }
+                    break;
+                case 4:
+                {
+                    Console.WriteLine("4. Метод золотого сечения");
+                }
+                    break;
+            }
 
             PrintResult(task);
         }
@@ -105,7 +135,7 @@ namespace One_dimensional_optimization
         {
             double x = task.GetExtreme();
             double f = task.GetFuncValue(x);
-            Console.WriteLine("\nX" + task.Purpose + " = " + x + " +- " + task.E + "\nF(x) = " + f + "\n");
+            Console.WriteLine("X" + task.Purpose + " = " + x + " +- " + task.E + "\nF(x) = " + (task.Purpose == "max" ? -f : f) + "\n");
         }
     }
 }

@@ -41,5 +41,10 @@ namespace One_dimensional_optimization
         }
 
         #endregion
+        
+        public static double TestFunc3GetValue(double x)
+        {
+            return 4 * Math.PI * Math.Pow(x, 2) + 1 / (Math.PI * Math.Pow(x, 2));
+        }
     }
 }

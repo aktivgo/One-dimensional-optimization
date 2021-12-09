@@ -81,6 +81,11 @@ namespace One_dimensional_optimization
                     result = TestFunctions.TestInverseFunc2GetValue(x);
                 }
                     break;
+                case 3:
+                {
+                    result = TestFunctions.TestFunc3GetValue(x);
+                }
+                    break;
             }
 
             return result;
